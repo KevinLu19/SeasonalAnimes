@@ -1,4 +1,6 @@
 ﻿
+using RestSharp;
+
 namespace SeasonalAnime;
 
 /*
@@ -6,5 +8,5 @@ namespace SeasonalAnime;
  */
 public class FetchUpcomingSeason
 {
-
+   
 }

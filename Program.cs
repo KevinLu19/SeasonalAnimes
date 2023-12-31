@@ -16,8 +16,7 @@ const string jikan_api_website = "https://api.jikan.moe/v4/";
 
 FetchCurrentSeason fetch_anime = new FetchCurrentSeason(jikan_api_website);
 fetch_anime.GetAllSeasons();
-
-fetch_anime.Url();
+fetch_anime.FilterAnimes();
 
 
 // Test
