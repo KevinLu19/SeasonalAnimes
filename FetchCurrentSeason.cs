@@ -8,13 +8,13 @@ namespace SeasonalAnime;
 public class Anime
 {
     public string Title { get; set; }
-    public string Synopsis { get; set; }
-    public string Img { get; set; }
-    public string Url { get; set; }
+    public JToken Synopsis { get; set; }
+    public JToken Img { get; set; }
+    public JToken Url { get; set; }
 
     // With popularity, the smaller the number, the more popular it is
     // According to myanimelist.
-    public string Popularity { get; set; }
+    public int Popularity { get; set; }
 }
 
 /*
@@ -34,7 +34,10 @@ public class FetchCurrentSeason : IRecommendProp, IAnimeProperties, IDisposable
     private UserProfile _baseline_data;
     private Anime _anime_prop;
 
-    public FetchCurrentSeason(string url)
+	// Hashmap to store title - popularity. Popularity as key, title as value.
+    private Dictionary<int, string> _anime_dict = new Dictionary<int, string>();
+
+	public FetchCurrentSeason(string url)
     {
         _client = new RestClient(url);
         _baseline_data = new UserProfile();
@@ -64,38 +67,48 @@ public class FetchCurrentSeason : IRecommendProp, IAnimeProperties, IDisposable
     public void FilterAnimes()
     {
         var user_genre_list = _baseline_data.GetUserGenre();
-        List<String> anime_list = new List<String>(); // List of Anime class objects.
 
-        foreach (var user_genre in user_genre_list)
-        {
-            foreach (var item in _json_results["data"])
-            {
-                _anime_prop.Title = item["title"].ToString();
-                _anime_prop.Synopsis = item["synopsis"].ToString();
-                _anime_prop.Img = item["images"]["jpg"]["image_url"].ToString();
-                _anime_prop.Url = item["url"].ToString();
-                _anime_prop.Popularity = item["popularity"].ToString();
+		foreach (var item in _json_results["data"])
+		{
+			_anime_prop.Title = item["title"].ToString();
+			//_anime_prop.Synopsis = item["synopsis"];
+			//_anime_prop.Img = item["images"]["jpg"]["image_url"];
+			//_anime_prop.Url = item["url"];
+			_anime_prop.Popularity = (int)item["popularity"];
 
-                // DisplayJsonValue(_anime_prop.Img);
+			// DisplayJsonValue(_anime_prop.Img);
 
-                // Add anime properties into a list to save the anime entry.
-                anime_list.Add(_anime_prop.Title);
-                anime_list.Add(_anime_prop.Synopsis);
-                anime_list.Add(_anime_prop.Url);
-                anime_list.Add(_anime_prop.Popularity);
-                anime_list.Add("-----------");
-            }
+			// Add anime properties into a list to save the anime entry.
+			// Take title and popularity values in the list. Sort by popularity.
+			// Then search using api for the name of the anime for the rest of the information.
+			if (!_anime_dict.ContainsKey(_anime_prop.Popularity))
+			{
+				_anime_dict.Add(_anime_prop.Popularity, _anime_prop.Title);
+			}
+			
+		}
 
-        }
-
-        // DisplayAnimeList(anime_list);
-    }
+        // DisplayAnimeDictionary();
+        SortPopularityAnime();
+	}
 
     // Sorts anime list from most popular to least (lowest number = most popular).
-    public void SortPopularityAnime(String popularity)
+    public void SortPopularityAnime()
     {
+        //JObject ex = JObject.Parse(popularity_list);
 
-    }
+        //var sorted_obj = new JObject(ex.Properties().OrderBy(p => (int)p.Value));
+        //string output = sorted_obj.ToString();
+
+        //Console.WriteLine(output);
+
+        var sorted_dict = from keys in _anime_dict orderby keys.Key ascending select keys;
+
+		foreach (KeyValuePair<int, string> kvp in sorted_dict)
+		{
+			Console.WriteLine(string.Format("Key = {0}, Value = {1}", kvp.Key, kvp.Value));
+		}
+	}
 
     // Testing purposes. Print things from json value filtering
     public void DisplayJsonValue<Thing>(Thing json_value)
@@ -105,12 +118,13 @@ public class FetchCurrentSeason : IRecommendProp, IAnimeProperties, IDisposable
     }
 
     // Testing purposes. Print items in anime list.
-    public void DisplayAnimeList(List<String> list)
+    public void DisplayAnimeDictionary()
     {
-        foreach (var item in list)
+        foreach (KeyValuePair<int, string> kvp in _anime_dict)
         {
-            Console.WriteLine(item);
+            Console.WriteLine(string.Format("Key = {0}, Value = {1}", kvp.Key, kvp.Value));
         }
+        
     }
 
     public void Title()
