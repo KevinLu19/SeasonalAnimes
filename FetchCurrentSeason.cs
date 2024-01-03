@@ -27,24 +27,22 @@ from the baseline information.
 Easiest solution: - check score of given anime. If it is above or equal to baseline
 keep in a list. Next would be to filter from genre.
  */
-public class FetchCurrentSeason : IRecommendProp, IAnimeProperties, IDisposable
+public class FetchCurrentSeason :  IDisposable
 {
     // Singleton Pattern
     private readonly RestClient _client;
-    private JObject _json_results;
 
-    private UserProfile _baseline_data;
+    private JObject _json_results;
     private Anime _anime_prop;
 
-    private List<string> anime_genre = new List<string>();  // Store this onto dictionary. 
-	// Hashmap to store title - popularity. Popularity as key, title as value.
-    private Dictionary<int, string> _anime_dict = new Dictionary<int, string>();
     
+	// Hashmap to store title - popularity. Popularity as key, title as value.
+    // List of string will be used to store the json meta data from the api.
+    private Dictionary<int, string> _anime_dict = new Dictionary<int, string>();
    
 	public FetchCurrentSeason(string url)
     {
         _client = new RestClient(url);
-        _baseline_data = new UserProfile();
         _anime_prop = new Anime();
     }
 
@@ -75,8 +73,9 @@ public class FetchCurrentSeason : IRecommendProp, IAnimeProperties, IDisposable
 			//_anime_prop.Synopsis = item["synopsis"];
 			//_anime_prop.Img = item["images"]["jpg"]["image_url"];
 			//_anime_prop.Url = item["url"];
+
 			_anime_prop.Popularity = (int)item["popularity"];
-            _anime_prop.Genres = item["genres"].ToString();
+            //_anime_prop.Genres = item["genres"].ToString();
 
             //DisplayJsonValue(_anime_prop.Genres);
 
@@ -86,12 +85,13 @@ public class FetchCurrentSeason : IRecommendProp, IAnimeProperties, IDisposable
             if (!_anime_dict.ContainsKey(_anime_prop.Popularity))
 			{
 				_anime_dict.Add(_anime_prop.Popularity, _anime_prop.Title);
+				
 			}
-			
 		}
 
-        // DisplayAnimeDictionary();
-        SortPopularityAnime();
+		// DisplayAnimeDictionary();
+		//FilterByUserGenre();
+		SortPopularityAnime();
 	}
 
     // Sorts anime list from most popular to least (lowest number = most popular).
@@ -100,16 +100,14 @@ public class FetchCurrentSeason : IRecommendProp, IAnimeProperties, IDisposable
         var sorted_dict = from keys in _anime_dict orderby keys.Key ascending select keys;
 
         // Print sorted dictionary list.
-        //foreach (KeyValuePair<int, string> kvp in sorted_dict)
-        //{
-        //    Console.WriteLine(string.Format("Key = {0}, Value = {1}", kvp.Key, kvp.Value));
-        //}
-        //      Console.WriteLine("--------");
-        //      Console.WriteLine("Number of Items in Dictionary: ", sorted_dict.Count());
-        //Console.WriteLine("--------");
-
-        FilterByUserGenre();
-    }
+        foreach (KeyValuePair<int, string> kvp in sorted_dict)
+        {
+            Console.WriteLine(string.Format("Key = {0}, Value = {1}", kvp.Key, kvp.Value));
+        }
+        Console.WriteLine("+++++++++");
+        Console.WriteLine($"Number of Items in Dictionary: {_anime_dict.Count}");
+		Console.WriteLine("+++++++++");
+	}
 
     // Filter the sorted dictionary based on the user's genre.
     public void FilterByUserGenre()
@@ -121,13 +119,9 @@ public class FetchCurrentSeason : IRecommendProp, IAnimeProperties, IDisposable
             var anime_name = _anime_dict[kvp.Key];
             //SearchByName(anime_name);
             Console.WriteLine(anime_name);
+            Console.WriteLine(_anime_prop.Genres);
         }
     }
-
-    public void SearchByName(string name)
-    {
-        // search api using the name.
-	}
 
 	// Testing purposes. Print things from json value filtering
 	public void DisplayJsonValue<Thing>(Thing json_value)
@@ -136,39 +130,14 @@ public class FetchCurrentSeason : IRecommendProp, IAnimeProperties, IDisposable
         Console.WriteLine("----------------");
     }
 
-    // Testing purposes. Print items in anime list.
+    //Testing purposes.Print items in anime list.
     public void DisplayAnimeDictionary()
     {
         foreach (KeyValuePair<int, string> kvp in _anime_dict)
         {
             Console.WriteLine(string.Format("Key = {0}, Value = {1}", kvp.Key, kvp.Value));
         }
-        
-    }
 
-    public void Title()
-    {
-        foreach (var item in _json_results["data"])
-        {
-            
-            Console.WriteLine($"Title is: {item["title"]}");
-        }
-    }
-
-    public void Url()
-    {
-        foreach (var item in _json_results["data"])
-        {
-            Console.WriteLine($"URL is: {item["url"]}");
-        }
-    }
-
-    public void Score()
-    {
-        foreach (var item in _json_results["data"])
-        {
-            Console.WriteLine($"Score is: {item["score"]}");
-        }
     }
 
     // Needs to be disposed so we can dispose of the wrapped HttpClient instance.
