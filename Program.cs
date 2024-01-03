@@ -4,6 +4,7 @@ using RestSharp;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using Newtonsoft.Json.Linq;
+using JikanDotNet;
 
 /*
  Project goals: 

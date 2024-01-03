@@ -17,3 +17,4 @@ C:\Users\Kevin\OneDrive\Desktop\ProgrammingProject\CSharp\SeasonalAnime\Seasonal
 C:\Users\Kevin\OneDrive\Desktop\ProgrammingProject\CSharp\SeasonalAnime\SeasonalAnime\SeasonalAnime\obj\Debug\net8.0\ref\SeasonalAnime.dll
 C:\Users\Kevin\OneDrive\Desktop\ProgrammingProject\CSharp\SeasonalAnime\SeasonalAnime\SeasonalAnime\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\Kevin\OneDrive\Desktop\ProgrammingProject\CSharp\SeasonalAnime\SeasonalAnime\SeasonalAnime\obj\Debug\net8.0\SeasonalAnime.sourcelink.json
+C:\Users\Kevin\OneDrive\Desktop\ProgrammingProject\CSharp\SeasonalAnime\SeasonalAnime\SeasonalAnime\bin\Debug\net8.0\JikanDotNet.dll

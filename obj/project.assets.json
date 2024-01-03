@@ -2,6 +2,19 @@
   "version": 3,
   "targets": {
     "net8.0": {
+      "JikanDotNet/2.7.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/JikanDotNet.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/JikanDotNet.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Newtonsoft.Json/13.0.3": {
         "type": "package",
         "compile": {
@@ -75,6 +88,26 @@
     }
   },
   "libraries": {
+    "JikanDotNet/2.7.0": {
+      "sha512": "smYS5CBKvbq8zfGQZW7R9yPuG9wkYKV/kqk9iHcNH1AhyEq4j7JfgXiHQLEE3ePpQDEwGBDAuZXjLp2OPiHE6g==",
+      "type": "package",
+      "path": "jikandotnet/2.7.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "jikan-logo.png",
+        "jikandotnet.2.7.0.nupkg.sha512",
+        "jikandotnet.nuspec",
+        "lib/net6.0/JikanDotNet.dll",
+        "lib/net6.0/JikanDotNet.xml",
+        "lib/net8.0/JikanDotNet.dll",
+        "lib/net8.0/JikanDotNet.xml",
+        "lib/netcoreapp3.1/JikanDotNet.dll",
+        "lib/netcoreapp3.1/JikanDotNet.xml",
+        "lib/netstandard2.0/JikanDotNet.dll",
+        "lib/netstandard2.0/JikanDotNet.xml"
+      ]
+    },
     "Newtonsoft.Json/13.0.3": {
       "sha512": "HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
       "type": "package",
@@ -230,6 +263,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "JikanDotNet >= 2.7.0",
       "Newtonsoft.Json >= 13.0.3",
       "RestSharp >= 110.2.0"
     ]
@@ -278,6 +312,10 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "JikanDotNet": {
+            "target": "Package",
+            "version": "[2.7.0, )"
+          },
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[13.0.3, )"

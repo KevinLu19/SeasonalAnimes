@@ -8,13 +8,13 @@ namespace SeasonalAnime;
 public struct UserProfile
 {
     float min_score;
-    List<String> anime_genre; 
+    List<string> anime_genre = new List<string>(); 
     public UserProfile()
     {
         min_score = 7.5f;
 
         // Add more genre if necessary to this list.
-        anime_genre = new List<String> { "Adventure", "Action", 
+        anime_genre = new List<string> { "Adventure", "Action", 
             "Comedy", "Fantasy", "Drama", "Mystery", "Drama", 
             "Romance", "Fantasy" };
     }
@@ -24,7 +24,7 @@ public struct UserProfile
         return min_score;
     }
 
-    public List<String> GetUserGenre()
+    public List<string> GetUserGenre()
     {
         return anime_genre;
     }
