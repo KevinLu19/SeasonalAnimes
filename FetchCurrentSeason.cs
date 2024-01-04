@@ -26,6 +26,9 @@ from the baseline information.
 
 Easiest solution: - check score of given anime. If it is above or equal to baseline
 keep in a list. Next would be to filter from genre.
+
+* Task:
+ - Ability to write both english and japanese names on the search.
  */
 public class FetchCurrentSeason :  IDisposable
 {
@@ -95,21 +98,32 @@ public class FetchCurrentSeason :  IDisposable
 	}
 
     // Sorts anime list from most popular to least (lowest number = most popular).
+    /*
+        Popularity = Amount of people that have it on their list (completed, watching, on hold, etc). 
+     */
     public void SortPopularityAnime()
     {
         var sorted_dict = from keys in _anime_dict orderby keys.Key ascending select keys;
 
-        // Print sorted dictionary list.
-        foreach (KeyValuePair<int, string> kvp in sorted_dict)
+		Console.WriteLine("+++++++++");
+		Console.WriteLine("These are listed from most popular to least popular");
+		Console.WriteLine("+++++++++");
+
+		// Print sorted dictionary list.
+		foreach (KeyValuePair<int, string> kvp in sorted_dict)
         {
-            Console.WriteLine(string.Format("Key = {0}, Value = {1}", kvp.Key, kvp.Value));
+            //Console.WriteLine(string.Format("Key = {0}, Value = {1}", kvp.Key, kvp.Value));
+            Console.WriteLine($"Popular # {kvp.Key} : {kvp.Value}");
         }
         Console.WriteLine("+++++++++");
-        Console.WriteLine($"Number of Items in Dictionary: {_anime_dict.Count}");
+        Console.WriteLine($"Number of Animes Present In This Season: {_anime_dict.Count}");
 		Console.WriteLine("+++++++++");
+		
+        PrintOptions();
 	}
 
     // Filter the sorted dictionary based on the user's genre.
+    // Unfinished. Need to figure out how to get genre and store it somewhere without the use of databases.
     public void FilterByUserGenre()
     {
         // var user_genre_list = _baseline_data.GetUserGenre();
@@ -130,6 +144,32 @@ public class FetchCurrentSeason :  IDisposable
         Console.WriteLine("----------------");
     }
 
+    // Option to have more indepth detail of an interested anime on the given sorted popularity list.
+    public void PrintOptions()
+    {
+		Console.WriteLine("=========================================");
+        Console.WriteLine("Here are your options for more details");
+        Console.WriteLine("1 - Indepth information for a given listed anime.");
+        Console.WriteLine("2 - Manually input which genre I want.");
+        Console.WriteLine("q - Exit Menu");
+        Console.WriteLine("=========================================");
+        Console.Write("Please enter in a number or q to quit: ");
+
+		string user_input = Console.ReadLine();
+
+		if (user_input == "q" || user_input == "Q")
+        {
+            Console.WriteLine("Closing project.");
+            Environment.Exit(0);
+        }
+        else if (user_input == "1")
+        {
+            Console.Write("Enter in the name of the anime you wish to get more info: ");
+			string input = Console.ReadLine();
+			Console.WriteLine(input);
+        }
+    }
+
     //Testing purposes.Print items in anime list.
     public void DisplayAnimeDictionary()
     {
@@ -137,7 +177,6 @@ public class FetchCurrentSeason :  IDisposable
         {
             Console.WriteLine(string.Format("Key = {0}, Value = {1}", kvp.Key, kvp.Value));
         }
-
     }
 
     // Needs to be disposed so we can dispose of the wrapped HttpClient instance.
