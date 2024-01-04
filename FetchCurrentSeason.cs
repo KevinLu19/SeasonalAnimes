@@ -36,6 +36,7 @@ public class FetchCurrentSeason :  IDisposable
     private readonly RestClient _client;
 
     private JObject _json_results;
+    private JObject _anime_name_result;
     private Anime _anime_prop;
 
     
@@ -104,6 +105,10 @@ public class FetchCurrentSeason :  IDisposable
     public void SortPopularityAnime()
     {
         var sorted_dict = from keys in _anime_dict orderby keys.Key ascending select keys;
+        
+        // Used as an anime selector for the menu.
+        int anime_count = 1;
+        Dictionary<int, string> dict_saved_option = new Dictionary<int, string>();
 
 		Console.WriteLine("+++++++++");
 		Console.WriteLine("These are listed from most popular to least popular");
@@ -113,13 +118,15 @@ public class FetchCurrentSeason :  IDisposable
 		foreach (KeyValuePair<int, string> kvp in sorted_dict)
         {
             //Console.WriteLine(string.Format("Key = {0}, Value = {1}", kvp.Key, kvp.Value));
-            Console.WriteLine($"Popular # {kvp.Key} : {kvp.Value}");
+            Console.WriteLine($"{anime_count} : Popular # {kvp.Key} : {kvp.Value}");
+            dict_saved_option.Add(anime_count, kvp.Value);          // Dictionary stores anime count to anime title. This will be used to help select anime number on the menu.
+            anime_count++;
         }
         Console.WriteLine("+++++++++");
         Console.WriteLine($"Number of Animes Present In This Season: {_anime_dict.Count}");
 		Console.WriteLine("+++++++++");
 		
-        PrintOptions();
+        PrintOptions(dict_saved_option);
 	}
 
     // Filter the sorted dictionary based on the user's genre.
@@ -145,7 +152,7 @@ public class FetchCurrentSeason :  IDisposable
     }
 
     // Option to have more indepth detail of an interested anime on the given sorted popularity list.
-    public void PrintOptions()
+    public void PrintOptions(Dictionary<int, string> dict_saved_selector)
     {
 		Console.WriteLine("=========================================");
         Console.WriteLine("Here are your options for more details");
@@ -155,7 +162,7 @@ public class FetchCurrentSeason :  IDisposable
         Console.WriteLine("=========================================");
         Console.Write("Please enter in a number or q to quit: ");
 
-		string user_input = Console.ReadLine();
+		string user_input = Console.ReadLine()!;
 
 		if (user_input == "q" || user_input == "Q")
         {
@@ -164,10 +171,27 @@ public class FetchCurrentSeason :  IDisposable
         }
         else if (user_input == "1")
         {
-            Console.Write("Enter in the name of the anime you wish to get more info: ");
-			string input = Console.ReadLine();
-			Console.WriteLine(input);
+            Console.Write("Enter the number associated next to the listed anime to get more info: ");
+			int input = Convert.ToInt32(Console.ReadLine())!;
+            InDepthAnimeDescription(input, dict_saved_selector);
         }
+    }
+    // Expand on the number 1 menu option.
+    public void InDepthAnimeDescription(int user_option, Dictionary<int, string> dict_saved_selector)
+    {
+        // Turn numerical key back into anime title from dictionary.
+        var anime_name = dict_saved_selector[user_option];
+
+        // Limit = 1 -> only show one result instead of 15+.
+		var request = new RestRequest($"/anime?q={anime_name}&limit=1");
+		var response = _client.Get(request);
+        var data = JsonSerializer.Deserialize<JsonNode>(response.Content!)!;
+
+        //Console.WriteLine(_client.BuildUri(request));
+
+        _anime_name_result = JObject.Parse(data.ToString());
+
+        Console.WriteLine(_anime_name_result["data"]);
     }
 
     //Testing purposes.Print items in anime list.
