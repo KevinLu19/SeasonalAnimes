@@ -43,6 +43,7 @@ public class FetchCurrentSeason :  IDisposable
 	// Hashmap to store title - popularity. Popularity as key, title as value.
     // List of string will be used to store the json meta data from the api.
     private Dictionary<int, string> _anime_dict = new Dictionary<int, string>();
+    private Dictionary<string, string> _genre_dict = new Dictionary<string, string>();      // Key = anime title, value = genre.
    
 	public FetchCurrentSeason(string url)
     {
@@ -79,7 +80,7 @@ public class FetchCurrentSeason :  IDisposable
 			//_anime_prop.Url = item["url"];
 
 			_anime_prop.Popularity = (int)item["popularity"];
-            //_anime_prop.Genres = item["genres"].ToString();
+            _anime_prop.Genres = item["genres"].ToString();
 
             //DisplayJsonValue(_anime_prop.Genres);
 
@@ -89,7 +90,7 @@ public class FetchCurrentSeason :  IDisposable
             if (!_anime_dict.ContainsKey(_anime_prop.Popularity))
 			{
 				_anime_dict.Add(_anime_prop.Popularity, _anime_prop.Title);
-				
+                _genre_dict.Add(_anime_prop.Title, _anime_prop.Genres);				
 			}
 		}
 
@@ -122,11 +123,12 @@ public class FetchCurrentSeason :  IDisposable
             dict_saved_option.Add(anime_count, kvp.Value);          // Dictionary stores anime count to anime title. This will be used to help select anime number on the menu.
             anime_count++;
         }
+        
         Console.WriteLine("+++++++++");
         Console.WriteLine($"Number of Animes Present In This Season: {_anime_dict.Count}");
 		Console.WriteLine("+++++++++");
-		
-        PrintOptions(dict_saved_option);
+
+        PrintOptions(dict_saved_option, anime_count);
 	}
 
     // Filter the sorted dictionary based on the user's genre.
@@ -152,8 +154,11 @@ public class FetchCurrentSeason :  IDisposable
     }
 
     // Option to have more indepth detail of an interested anime on the given sorted popularity list.
-    public void PrintOptions(Dictionary<int, string> dict_saved_selector)
+    public void PrintOptions(Dictionary<int, string> dict_saved_selector, int anime_count)
     {
+        List<string> list_option_2 =  new List<string>();
+        List<int> user_choice_on_list = new List<int>();
+
 		Console.WriteLine("=========================================");
         Console.WriteLine("Here are your options for more details");
         Console.WriteLine("1 - Indepth information for a given listed anime.");
@@ -163,6 +168,7 @@ public class FetchCurrentSeason :  IDisposable
         Console.Write("Please enter in a number or q to quit: ");
 
 		string user_input = Console.ReadLine()!;
+        
 
 		if (user_input == "q" || user_input == "Q")
         {
@@ -173,7 +179,19 @@ public class FetchCurrentSeason :  IDisposable
         {
             Console.Write("Enter the number associated next to the listed anime to get more info: ");
 			int input = Convert.ToInt32(Console.ReadLine())!;
+            user_choice_on_list.Add(input);
             InDepthAnimeDescription(input, dict_saved_selector);
+        }
+        else if (user_input == "2")
+        {
+            Console.WriteLine("Enter the genre(s) you would like to filter the list. If multiple, place a comma to separate them: ");
+            string user_genre = Console.ReadLine()!;
+            list_option_2.Add(user_genre);
+
+            var anime_choice = user_choice_on_list[0];
+            string anime_name = dict_saved_selector[anime_choice];       // Convert number back to anime title for genre_dict to use as a key. Issue here.
+
+            UserDefinedGenreList(list_option_2, anime_name);
         }
     }
     // Expand on the number 1 menu option.
@@ -191,7 +209,19 @@ public class FetchCurrentSeason :  IDisposable
 
         _anime_name_result = JObject.Parse(data.ToString());
 
-        Console.WriteLine(_anime_name_result["data"]);
+        foreach (var item in _anime_name_result["data"])
+        {
+            Console.WriteLine(item);
+        }
+    }
+
+    // Expand on number 2 menu option.
+    public void UserDefinedGenreList(List<string> list_menu_2_choices, string anime_name_from_user)
+    {
+        foreach (var item in list_menu_2_choices)
+        {
+            Console.WriteLine(_genre_dict[anime_name_from_user]);
+        }
     }
 
     //Testing purposes.Print items in anime list.
