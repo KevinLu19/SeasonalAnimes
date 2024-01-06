@@ -12,6 +12,17 @@ public class Anime
     public string Img { get; set; }
     public string Url { get; set; }
 
+    public string Score { get; set; }
+    public string Score_By { get; set; }
+    public string Members { get; set; }
+    public string Rank { get; set; }
+    public string Season { get; set; }
+    public string Studio { get; set; }
+    public string Themes { get; set; }
+    public string Demographic { get; set; }
+    public string Source { get; set; }
+    public string Type { get; set; }
+
     // With popularity, the smaller the number, the more popular it is
     // According to myanimelist.
     public int Popularity { get; set; }
@@ -159,39 +170,42 @@ public class FetchCurrentSeason :  IDisposable
         List<string> list_option_2 =  new List<string>();
         List<int> user_choice_on_list = new List<int>();
 
-		Console.WriteLine("=========================================");
-        Console.WriteLine("Here are your options for more details");
-        Console.WriteLine("1 - Indepth information for a given listed anime.");
-        Console.WriteLine("2 - Manually input which genre I want.");
-        Console.WriteLine("q - Exit Menu");
-        Console.WriteLine("=========================================");
-        Console.Write("Please enter in a number or q to quit: ");
-
-		string user_input = Console.ReadLine()!;
-        
-
-		if (user_input == "q" || user_input == "Q")
+        while (true)
         {
-            Console.WriteLine("Closing project.");
-            Environment.Exit(0);
-        }
-        else if (user_input == "1")
-        {
-            Console.Write("Enter the number associated next to the listed anime to get more info: ");
-			int input = Convert.ToInt32(Console.ReadLine())!;
-            user_choice_on_list.Add(input);
-            InDepthAnimeDescription(input, dict_saved_selector);
-        }
-        else if (user_input == "2")
-        {
-            Console.WriteLine("Enter the genre(s) you would like to filter the list. If multiple, place a comma to separate them: ");
-            string user_genre = Console.ReadLine()!;
-            list_option_2.Add(user_genre);
+            Console.WriteLine("=========================================");
+            Console.WriteLine("Here are your options for more details");
+            Console.WriteLine("1 - Indepth information for a given listed anime.");
+            Console.WriteLine("2 - Manually input which genre I want.");
+            Console.WriteLine("q - Exit Menu");
+            Console.WriteLine("=========================================");
+            Console.Write("Please enter in a number or q to quit: ");
 
-            var anime_choice = user_choice_on_list[0];
-            string anime_name = dict_saved_selector[anime_choice];       // Convert number back to anime title for genre_dict to use as a key. Issue here.
+            string user_input = Console.ReadLine()!;
 
-            UserDefinedGenreList(list_option_2, anime_name);
+
+            if (user_input == "q" || user_input == "Q")
+            {
+                Console.WriteLine("Closing project.");
+                Environment.Exit(0);
+            }
+            else if (user_input == "1")
+            {
+                Console.Write("Enter the number associated next to the listed anime to get more info: ");
+                int input = Convert.ToInt32(Console.ReadLine())!;
+                user_choice_on_list.Add(input);
+                InDepthAnimeDescription(input, dict_saved_selector);
+            }
+            else if (user_input == "2")
+            {
+                Console.Write("Enter the genre(s) you would like to filter the list. If multiple, place a comma to separate them: ");
+                string user_genre = Console.ReadLine()!;
+                list_option_2.Add(user_genre);
+
+                //var anime_choice = user_choice_on_list[0];
+                //string anime_name = dict_saved_selector[anime_choice];       // Convert number back to anime title for genre_dict to use as a key. Issue here.
+
+                // UserDefinedGenreList(list_option_2);
+            }
         }
     }
     // Expand on the number 1 menu option.
@@ -209,19 +223,87 @@ public class FetchCurrentSeason :  IDisposable
 
         _anime_name_result = JObject.Parse(data.ToString());
 
+        Anime anime_indepth = new Anime();
+
+        var anime_result = _anime_name_result["data"];
+
+
+        //foreach (var item in anime_result)
+        //{
+        //    Console.WriteLine(item);
+        //}
+
+
+        /*
+            Print out:
+            - Title
+            - Synopsis
+            - image url 
+            - score
+            - Popularity
+            - members
+            - Rank
+            - Season 
+            - studio 
+            - Genre
+            - Themes
+            - Demographic
+            - Source
+            - Type (tv, ona, special, movie, etc)
+         */
         foreach (var item in _anime_name_result["data"])
         {
-            Console.WriteLine(item);
+            anime_indepth.Title = item["title"]!.ToString();
+            anime_indepth.Synopsis = item["synopsis"]!.ToString();
+            anime_indepth.Url = item["url"]!.ToString();
+            anime_indepth.Img = "";
+            anime_indepth.Score = item["score"]!.ToString();
+            anime_indepth.Score_By = item["scored_by"]!.ToString();
+            anime_indepth.Rank = item["rank"]!.ToString();
+            anime_indepth.Popularity = int.Parse(item["popularity"]!.ToString());
+            anime_indepth.Members = item["members"]!.ToString();
+            anime_indepth.Rank = item["rank"]!.ToString();
+            anime_indepth.Season = item["season"]!.ToString();
+            anime_indepth.Studio = "";
+            anime_indepth.Genres = "";
+            anime_indepth.Themes = "";
+            anime_indepth.Demographic = "";
+            anime_indepth.Source = item["source"]!.ToString();
+            anime_indepth.Type = item["type"]!.ToString();
+
+            // Img, studio, genres, themes, demographic need an additional loop.
+            //Console.WriteLine(item);
+            Console.WriteLine($"Title: {anime_indepth.Title}");
+            Console.WriteLine($"Synopsis: {anime_indepth.Synopsis}");
+            Console.WriteLine($"URL: {anime_indepth.Url}");
+            Console.WriteLine($"Img: {anime_indepth.Img}");
+            Console.WriteLine($"Score: {anime_indepth.Score}");
+            Console.WriteLine($"Scored By: {anime_indepth.Score_By}");
+            Console.WriteLine($"Rank: {anime_indepth.Rank}");
+            Console.WriteLine($"Popularity: {anime_indepth.Popularity}");
+            Console.WriteLine($"Members: {anime_indepth.Members}");
+            Console.WriteLine($"Season: {anime_indepth.Season}");
+            Console.WriteLine($"Studio: {anime_indepth.Studio}");
+            Console.WriteLine($"Genres: {anime_indepth.Genres}");
+            Console.WriteLine($"Themes: {anime_indepth.Themes}");
+            Console.WriteLine($"Demographic: {anime_indepth.Demographic}");
+            Console.WriteLine($"Source: {anime_indepth.Source}");
+            Console.WriteLine($"Type: {anime_indepth.Type}");
+        }
+    }
+
+    public void FetchEmbeddedJsonAttribute(JToken anime_result)
+    {
+        foreach (var item in anime_result["images"])
+        {
+            Console.WriteLine(item["jpg"]);
         }
     }
 
     // Expand on number 2 menu option.
-    public void UserDefinedGenreList(List<string> list_menu_2_choices, string anime_name_from_user)
+    public void UserDefinedGenreList(List<string> list_menu_2_choices)
     {
-        foreach (var item in list_menu_2_choices)
-        {
-            Console.WriteLine(_genre_dict[anime_name_from_user]);
-        }
+        
     }
 
     //Testing purposes.Print items in anime list.
