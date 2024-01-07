@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Kevin\\OneDrive\\Desktop\\ProgrammingProject\\CSharp\\SeasonalAnime\\SeasonalAnime\\SeasonalAnime\\SeasonalAnime.csproj": {}
+    "C:\\Users\\Kevin\\Desktop\\Programming Project\\CSharp\\SeasonalAnime\\SeasonalAnime.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Kevin\\OneDrive\\Desktop\\ProgrammingProject\\CSharp\\SeasonalAnime\\SeasonalAnime\\SeasonalAnime\\SeasonalAnime.csproj": {
+    "C:\\Users\\Kevin\\Desktop\\Programming Project\\CSharp\\SeasonalAnime\\SeasonalAnime.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Kevin\\OneDrive\\Desktop\\ProgrammingProject\\CSharp\\SeasonalAnime\\SeasonalAnime\\SeasonalAnime\\SeasonalAnime.csproj",
+        "projectUniqueName": "C:\\Users\\Kevin\\Desktop\\Programming Project\\CSharp\\SeasonalAnime\\SeasonalAnime.csproj",
         "projectName": "SeasonalAnime",
-        "projectPath": "C:\\Users\\Kevin\\OneDrive\\Desktop\\ProgrammingProject\\CSharp\\SeasonalAnime\\SeasonalAnime\\SeasonalAnime\\SeasonalAnime.csproj",
+        "projectPath": "C:\\Users\\Kevin\\Desktop\\Programming Project\\CSharp\\SeasonalAnime\\SeasonalAnime.csproj",
         "packagesPath": "C:\\Users\\Kevin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Kevin\\OneDrive\\Desktop\\ProgrammingProject\\CSharp\\SeasonalAnime\\SeasonalAnime\\SeasonalAnime\\obj\\",
+        "outputPath": "C:\\Users\\Kevin\\Desktop\\Programming Project\\CSharp\\SeasonalAnime\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

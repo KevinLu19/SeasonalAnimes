@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FAtBgE/G3nzzenRN5V+M8rf0Nbg5I7C2AycF4t1XoS7IolVtyPGh62+LBMWZFf1m5Vno+77xoREtFI6RHMT0YQ==",
+  "dgSpecHash": "U99wDts88mb6QbqFoo6851GILNAsi9HfLZ3cmQUnl2wD6JnNvEa9G35Sm9fdMzL+8zRm2ULY63iScFzkEKXang==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Kevin\\OneDrive\\Desktop\\ProgrammingProject\\CSharp\\SeasonalAnime\\SeasonalAnime\\SeasonalAnime\\SeasonalAnime.csproj",
+  "projectFilePath": "C:\\Users\\Kevin\\Desktop\\Programming Project\\CSharp\\SeasonalAnime\\SeasonalAnime.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Kevin\\.nuget\\packages\\jikandotnet\\2.7.0\\jikandotnet.2.7.0.nupkg.sha512",
     "C:\\Users\\Kevin\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
