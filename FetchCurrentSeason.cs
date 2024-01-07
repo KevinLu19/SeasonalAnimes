@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using RestSharp;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 
@@ -225,15 +226,6 @@ public class FetchCurrentSeason :  IDisposable
 
         Anime anime_indepth = new Anime();
 
-        var anime_result = _anime_name_result["data"];
-
-
-        //foreach (var item in anime_result)
-        //{
-        //    Console.WriteLine(item);
-        //}
-
-
         /*
             Print out:
             - Title
@@ -256,7 +248,7 @@ public class FetchCurrentSeason :  IDisposable
             anime_indepth.Title = item["title"]!.ToString();
             anime_indepth.Synopsis = item["synopsis"]!.ToString();
             anime_indepth.Url = item["url"]!.ToString();
-            anime_indepth.Img = "";
+            anime_indepth.Img = item["images"]["jpg"]["image_url"].ToString();
             anime_indepth.Score = item["score"]!.ToString();
             anime_indepth.Score_By = item["scored_by"]!.ToString();
             anime_indepth.Rank = item["rank"]!.ToString();
@@ -264,10 +256,13 @@ public class FetchCurrentSeason :  IDisposable
             anime_indepth.Members = item["members"]!.ToString();
             anime_indepth.Rank = item["rank"]!.ToString();
             anime_indepth.Season = item["season"]!.ToString();
-            anime_indepth.Studio = "";
-            anime_indepth.Genres = "";
-            anime_indepth.Themes = "";
-            anime_indepth.Demographic = "";
+            // anime_indepth.Studio = item["studios"][0]["name"].ToString();
+            anime_indepth.Studio = FetchEmbeddedJsonAttribute("studios");
+            // anime_indepth.Genres = item["genres"].ToString();
+            anime_indepth.Genres = FetchEmbeddedJsonAttribute("genres");
+            //anime_indepth.Themes = item["themes"].ToString();
+            anime_indepth.Themes = FetchEmbeddedJsonAttribute("themes");
+            anime_indepth.Demographic = item["demographics"].ToString();
             anime_indepth.Source = item["source"]!.ToString();
             anime_indepth.Type = item["type"]!.ToString();
 
@@ -292,12 +287,35 @@ public class FetchCurrentSeason :  IDisposable
         }
     }
 
-    public void FetchEmbeddedJsonAttribute(JToken anime_result)
+    // Loops through the json value that have more than one value such as studio, genres, themes, etc. The only difference is one small word difference.
+    // If the value is empty, just return "[]".
+    public string FetchEmbeddedJsonAttribute(string attribute_name)
     {
-        foreach (var item in anime_result["images"])
+        List<string> list_att_name = new List<string>();
+        string value = "";
+
+        foreach (var item in _anime_name_result["data"])
         {
-            Console.WriteLine(item["jpg"]);
+            foreach (var x in item[attribute_name])
+            {
+                list_att_name.Add(x["name"].ToString());
+            }
         }
+
+        if (list_att_name.Count == 1)
+        {
+            value = list_att_name[0];
+        }
+        else
+        {
+            foreach (var item in list_att_name)
+            {
+                value += $"{item}, ";
+            }
+        }
+
+
+        return value;
     }
 
     // Expand on number 2 menu option.

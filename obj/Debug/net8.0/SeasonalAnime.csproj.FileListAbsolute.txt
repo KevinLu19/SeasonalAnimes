@@ -18,3 +18,23 @@ C:\Users\Kevin\OneDrive\Desktop\ProgrammingProject\CSharp\SeasonalAnime\Seasonal
 C:\Users\Kevin\OneDrive\Desktop\ProgrammingProject\CSharp\SeasonalAnime\SeasonalAnime\SeasonalAnime\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\Kevin\OneDrive\Desktop\ProgrammingProject\CSharp\SeasonalAnime\SeasonalAnime\SeasonalAnime\obj\Debug\net8.0\SeasonalAnime.sourcelink.json
 C:\Users\Kevin\OneDrive\Desktop\ProgrammingProject\CSharp\SeasonalAnime\SeasonalAnime\SeasonalAnime\bin\Debug\net8.0\JikanDotNet.dll
+C:\Users\Kevin\Desktop\Programming Project\CSharp\SeasonalAnime\bin\Debug\net8.0\SeasonalAnime.exe
+C:\Users\Kevin\Desktop\Programming Project\CSharp\SeasonalAnime\bin\Debug\net8.0\SeasonalAnime.deps.json
+C:\Users\Kevin\Desktop\Programming Project\CSharp\SeasonalAnime\bin\Debug\net8.0\SeasonalAnime.runtimeconfig.json
+C:\Users\Kevin\Desktop\Programming Project\CSharp\SeasonalAnime\bin\Debug\net8.0\SeasonalAnime.dll
+C:\Users\Kevin\Desktop\Programming Project\CSharp\SeasonalAnime\bin\Debug\net8.0\SeasonalAnime.pdb
+C:\Users\Kevin\Desktop\Programming Project\CSharp\SeasonalAnime\bin\Debug\net8.0\JikanDotNet.dll
+C:\Users\Kevin\Desktop\Programming Project\CSharp\SeasonalAnime\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\Kevin\Desktop\Programming Project\CSharp\SeasonalAnime\bin\Debug\net8.0\RestSharp.dll
+C:\Users\Kevin\Desktop\Programming Project\CSharp\SeasonalAnime\obj\Debug\net8.0\SeasonalAnime.csproj.AssemblyReference.cache
+C:\Users\Kevin\Desktop\Programming Project\CSharp\SeasonalAnime\obj\Debug\net8.0\SeasonalAnime.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Kevin\Desktop\Programming Project\CSharp\SeasonalAnime\obj\Debug\net8.0\SeasonalAnime.AssemblyInfoInputs.cache
+C:\Users\Kevin\Desktop\Programming Project\CSharp\SeasonalAnime\obj\Debug\net8.0\SeasonalAnime.AssemblyInfo.cs
+C:\Users\Kevin\Desktop\Programming Project\CSharp\SeasonalAnime\obj\Debug\net8.0\SeasonalAnime.csproj.CoreCompileInputs.cache
+C:\Users\Kevin\Desktop\Programming Project\CSharp\SeasonalAnime\obj\Debug\net8.0\SeasonalAnime.sourcelink.json
+C:\Users\Kevin\Desktop\Programming Project\CSharp\SeasonalAnime\obj\Debug\net8.0\SeasonalAnime.csproj.CopyComplete
+C:\Users\Kevin\Desktop\Programming Project\CSharp\SeasonalAnime\obj\Debug\net8.0\SeasonalAnime.dll
+C:\Users\Kevin\Desktop\Programming Project\CSharp\SeasonalAnime\obj\Debug\net8.0\refint\SeasonalAnime.dll
+C:\Users\Kevin\Desktop\Programming Project\CSharp\SeasonalAnime\obj\Debug\net8.0\SeasonalAnime.pdb
+C:\Users\Kevin\Desktop\Programming Project\CSharp\SeasonalAnime\obj\Debug\net8.0\SeasonalAnime.genruntimeconfig.cache
+C:\Users\Kevin\Desktop\Programming Project\CSharp\SeasonalAnime\obj\Debug\net8.0\ref\SeasonalAnime.dll
