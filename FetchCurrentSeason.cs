@@ -305,11 +305,6 @@ public class FetchCurrentSeason :  IDisposable
         }
         else
         {
-            //foreach (var item in list_att_name)
-            //{
-            //    value += $"{item}, ";
-            //}
-
             for (int i = 0; i < list_att_name.Count; i++)
             {
                 if (i + 1 == list_att_name.Count)
