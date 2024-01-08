@@ -123,10 +123,6 @@ public class FetchCurrentSeason :  IDisposable
         int anime_count = 1;
         Dictionary<int, string> dict_saved_option = new Dictionary<int, string>();
 
-		Console.WriteLine("+++++++++");
-		Console.WriteLine("These are listed from most popular to least popular");
-		Console.WriteLine("+++++++++");
-
 		// Print sorted dictionary list.
 		foreach (KeyValuePair<int, string> kvp in sorted_dict)
         {
@@ -143,9 +139,9 @@ public class FetchCurrentSeason :  IDisposable
         PrintOptions(dict_saved_option, anime_count);
 	}
 
-    // Filter the sorted dictionary based on the user's genre.
-    // Unfinished. Need to figure out how to get genre and store it somewhere without the use of databases.
-    public void FilterByUserGenre()
+	// Filter the sorted dictionary based on the user's genre.
+	// Unfinished. Need to figure out how to get genre and store it somewhere without the use of databases.
+	public void FilterByUserGenre()
     {
         // var user_genre_list = _baseline_data.GetUserGenre();
 
@@ -262,7 +258,8 @@ public class FetchCurrentSeason :  IDisposable
             anime_indepth.Genres = FetchEmbeddedJsonAttribute("genres");
             //anime_indepth.Themes = item["themes"].ToString();
             anime_indepth.Themes = FetchEmbeddedJsonAttribute("themes");
-            anime_indepth.Demographic = item["demographics"].ToString();
+            //anime_indepth.Demographic = item["demographics"].ToString();
+            anime_indepth.Demographic = FetchEmbeddedJsonAttribute("demographics");
             anime_indepth.Source = item["source"]!.ToString();
             anime_indepth.Type = item["type"]!.ToString();
 
@@ -308,9 +305,21 @@ public class FetchCurrentSeason :  IDisposable
         }
         else
         {
-            foreach (var item in list_att_name)
+            //foreach (var item in list_att_name)
+            //{
+            //    value += $"{item}, ";
+            //}
+
+            for (int i = 0; i < list_att_name.Count; i++)
             {
-                value += $"{item}, ";
+                if (i + 1 == list_att_name.Count)
+                {
+                    value += list_att_name[i];
+                }
+                else
+                {
+                    value += $"{list_att_name[i]}, ";
+                }
             }
         }
 
