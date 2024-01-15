@@ -25,8 +25,8 @@ internal class Main	: BaseCommandModule
 		await ctx.RespondAsync("Greetings! UwU");
 	}
 
-	[Command("season"), Description("Grabs the current list of anime seasons")]
-	public async Task SeasonCommand(CommandContext ctx)
+	[Command("anime"), Description("Grabs the current list of anime seasons")]
+	public async Task AnimeCommand(CommandContext ctx)
 	{
 		
 	}
@@ -40,5 +40,6 @@ internal class Main	: BaseCommandModule
 
 		await ctx.RespondAsync(command_list);
 	}
+
 	
 }
