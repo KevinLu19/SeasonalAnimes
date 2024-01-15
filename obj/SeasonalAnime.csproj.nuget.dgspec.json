@@ -44,9 +44,25 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "DisCatSharp": {
+              "target": "Package",
+              "version": "[10.6.1-nightly-003, )"
+            },
+            "DisCatSharp.ApplicationCommands": {
+              "target": "Package",
+              "version": "[10.6.1-nightly-003, )"
+            },
+            "DisCatSharp.CommandsNext": {
+              "target": "Package",
+              "version": "[10.6.1-nightly-003, )"
+            },
             "JikanDotNet": {
               "target": "Package",
               "version": "[2.7.0, )"
+            },
+            "Microsoft.Extensions.Configuration.UserSecrets": {
+              "target": "Package",
+              "version": "[6.0.1, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",

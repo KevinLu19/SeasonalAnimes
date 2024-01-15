@@ -42,7 +42,7 @@ keep in a list. Next would be to filter from genre.
 * Task:
  - Ability to write both english and japanese names on the search.
  */
-public class FetchCurrentSeason :  IDisposable
+public class FetchCurrentSeason : IDisposable
 {
     // Singleton Pattern
     private readonly RestClient _client;
@@ -51,13 +51,13 @@ public class FetchCurrentSeason :  IDisposable
     private JObject _anime_name_result;
     private Anime _anime_prop;
 
-    
-	// Hashmap to store title - popularity. Popularity as key, title as value.
+
+    // Hashmap to store title - popularity. Popularity as key, title as value.
     // List of string will be used to store the json meta data from the api.
     private Dictionary<int, string> _anime_dict = new Dictionary<int, string>();
     private Dictionary<string, string> _genre_dict = new Dictionary<string, string>();      // Key = anime title, value = genre.
-   
-	public FetchCurrentSeason(string url)
+
+    public FetchCurrentSeason(string url)
     {
         _client = new RestClient(url);
         _anime_prop = new Anime();
@@ -68,7 +68,7 @@ public class FetchCurrentSeason :  IDisposable
         var request = new RestRequest("/seasons/now");
         var response = _client.Get(request);
         var data = JsonSerializer.Deserialize<JsonNode>(response.Content!)!;
-	
+
         // JObject result = JObject.Parse(data.ToString());
         _json_results = JObject.Parse(data.ToString());
 
@@ -84,14 +84,14 @@ public class FetchCurrentSeason :  IDisposable
 
     public void FilterAnimes()
     {
-		foreach (var item in _json_results["data"])
-		{
-			_anime_prop.Title = item["title"].ToString();
-			//_anime_prop.Synopsis = item["synopsis"];
-			//_anime_prop.Img = item["images"]["jpg"]["image_url"];
-			//_anime_prop.Url = item["url"];
+        foreach (var item in _json_results["data"])
+        {
+            _anime_prop.Title = item["title"].ToString();
+            //_anime_prop.Synopsis = item["synopsis"];
+            //_anime_prop.Img = item["images"]["jpg"]["image_url"];
+            //_anime_prop.Url = item["url"];
 
-			_anime_prop.Popularity = (int)item["popularity"];
+            _anime_prop.Popularity = (int)item["popularity"];
             _anime_prop.Genres = item["genres"].ToString();
 
             //DisplayJsonValue(_anime_prop.Genres);
@@ -100,16 +100,16 @@ public class FetchCurrentSeason :  IDisposable
             // Take title and popularity values in the list. Sort by popularity.
             // Then search using api for the name of the anime for the rest of the information.
             if (!_anime_dict.ContainsKey(_anime_prop.Popularity))
-			{
-				_anime_dict.Add(_anime_prop.Popularity, _anime_prop.Title);
-                _genre_dict.Add(_anime_prop.Title, _anime_prop.Genres);				
-			}
-		}
+            {
+                _anime_dict.Add(_anime_prop.Popularity, _anime_prop.Title);
+                _genre_dict.Add(_anime_prop.Title, _anime_prop.Genres);
+            }
+        }
 
-		// DisplayAnimeDictionary();
-		//FilterByUserGenre();
-		SortPopularityAnime();
-	}
+        // DisplayAnimeDictionary();
+        //FilterByUserGenre();
+        SortPopularityAnime();
+    }
 
     // Sorts anime list from most popular to least (lowest number = most popular).
     /*
@@ -118,53 +118,38 @@ public class FetchCurrentSeason :  IDisposable
     public void SortPopularityAnime()
     {
         var sorted_dict = from keys in _anime_dict orderby keys.Key ascending select keys;
-        
+
         // Used as an anime selector for the menu.
         int anime_count = 1;
         Dictionary<int, string> dict_saved_option = new Dictionary<int, string>();
 
-		// Print sorted dictionary list.
-		foreach (KeyValuePair<int, string> kvp in sorted_dict)
+        // Print sorted dictionary list.
+        foreach (KeyValuePair<int, string> kvp in sorted_dict)
         {
             //Console.WriteLine(string.Format("Key = {0}, Value = {1}", kvp.Key, kvp.Value));
             Console.WriteLine($"{anime_count} : Popular # {kvp.Key} : {kvp.Value}");
             dict_saved_option.Add(anime_count, kvp.Value);          // Dictionary stores anime count to anime title. This will be used to help select anime number on the menu.
             anime_count++;
         }
-        
+
         Console.WriteLine("+++++++++");
         Console.WriteLine($"Number of Animes Present In This Season: {_anime_dict.Count}");
-		Console.WriteLine("+++++++++");
+        Console.WriteLine("+++++++++");
 
-        PrintOptions(dict_saved_option, anime_count);
-	}
-
-	// Filter the sorted dictionary based on the user's genre.
-	// Unfinished. Need to figure out how to get genre and store it somewhere without the use of databases.
-	public void FilterByUserGenre()
-    {
-        // var user_genre_list = _baseline_data.GetUserGenre();
-
-        foreach (KeyValuePair<int, string> kvp in _anime_dict)
-        {
-            var anime_name = _anime_dict[kvp.Key];
-            //SearchByName(anime_name);
-            Console.WriteLine(anime_name);
-            Console.WriteLine(_anime_prop.Genres);
-        }
+        PrintOptions(dict_saved_option);
     }
 
-	// Testing purposes. Print things from json value filtering
-	public void DisplayJsonValue<Thing>(Thing json_value)
+    // Testing purposes. Print things from json value filtering
+    public void DisplayJsonValue<Thing>(Thing json_value)
     {
         Console.WriteLine(json_value);
         Console.WriteLine("----------------");
     }
 
     // Option to have more indepth detail of an interested anime on the given sorted popularity list.
-    public void PrintOptions(Dictionary<int, string> dict_saved_selector, int anime_count)
+    public void PrintOptions(Dictionary<int, string> dict_saved_selector)
     {
-        List<string> list_option_2 =  new List<string>();
+        List<string> list_option_2 = new List<string>();
         List<int> user_choice_on_list = new List<int>();
 
         while (true)
@@ -194,14 +179,14 @@ public class FetchCurrentSeason :  IDisposable
             }
             else if (user_input == "2")
             {
-                Console.Write("Enter the genre(s) you would like to filter the list. If multiple, place a comma to separate them: ");
+                Console.Write("Press enter after each genre(s) you would like to filter from the list: ");
                 string user_genre = Console.ReadLine()!;
                 list_option_2.Add(user_genre);
 
                 //var anime_choice = user_choice_on_list[0];
                 //string anime_name = dict_saved_selector[anime_choice];       // Convert number back to anime title for genre_dict to use as a key. Issue here.
 
-                // UserDefinedGenreList(list_option_2);
+                UserDefinedGenreList(list_option_2);
             }
         }
     }
@@ -212,8 +197,8 @@ public class FetchCurrentSeason :  IDisposable
         var anime_name = dict_saved_selector[user_option];
 
         // Limit = 1 -> only show one result instead of 15+.
-		var request = new RestRequest($"/anime?q={anime_name}&limit=1");
-		var response = _client.Get(request);
+        var request = new RestRequest($"/anime?q={anime_name}&limit=1");
+        var response = _client.Get(request);
         var data = JsonSerializer.Deserialize<JsonNode>(response.Content!)!;
 
         //Console.WriteLine(_client.BuildUri(request));
@@ -244,7 +229,7 @@ public class FetchCurrentSeason :  IDisposable
             anime_indepth.Title = item["title"]!.ToString();
             anime_indepth.Synopsis = item["synopsis"]!.ToString();
             anime_indepth.Url = item["url"]!.ToString();
-            anime_indepth.Img = item["images"]["jpg"]["image_url"].ToString();
+            anime_indepth.Img = item["images"]!["jpg"]!["image_url"]!.ToString();
             anime_indepth.Score = item["score"]!.ToString();
             anime_indepth.Score_By = item["scored_by"]!.ToString();
             anime_indepth.Rank = item["rank"]!.ToString();
@@ -318,14 +303,14 @@ public class FetchCurrentSeason :  IDisposable
             }
         }
 
-
         return value;
     }
 
     // Expand on number 2 menu option.
+    // Filtering futher from the sorted list presented using the genre collected by the user.
     public void UserDefinedGenreList(List<string> list_menu_2_choices)
     {
-        
+
     }
 
     //Testing purposes.Print items in anime list.
@@ -338,7 +323,7 @@ public class FetchCurrentSeason :  IDisposable
     }
 
     // Needs to be disposed so we can dispose of the wrapped HttpClient instance.
-    public void Dispose() 
+    public void Dispose()
     {
         _client?.Dispose();
     }

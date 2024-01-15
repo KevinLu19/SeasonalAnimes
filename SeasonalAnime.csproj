@@ -5,10 +5,15 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <UserSecretsId>ef7518c5-2755-4d76-baec-ad9dddc0bc4f</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="DisCatSharp" Version="10.6.1-nightly-003" />
+    <PackageReference Include="DisCatSharp.ApplicationCommands" Version="10.6.1-nightly-003" />
+    <PackageReference Include="DisCatSharp.CommandsNext" Version="10.6.1-nightly-003" />
     <PackageReference Include="JikanDotNet" Version="2.7.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="RestSharp" Version="110.2.0" />
   </ItemGroup>

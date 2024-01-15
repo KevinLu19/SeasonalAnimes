@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "SeasonalAnime": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DISCORD_TOKEN": "fehfeowihfeoihiofwefew"
+      }
+    }
+  }
+}

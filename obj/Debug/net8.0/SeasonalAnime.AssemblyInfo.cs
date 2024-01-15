@@ -11,10 +11,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("ef7518c5-2755-4d76-baec-ad9dddc0bc4f")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("SeasonalAnime")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3ba7e9bc1492156d58eb4dfb6a7962f7ccaf5f78")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0c0109c77cf6c27a4ae4b541d73aa137e10aa16d")]
 [assembly: System.Reflection.AssemblyProductAttribute("SeasonalAnime")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SeasonalAnime")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

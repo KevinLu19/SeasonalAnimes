@@ -4,3 +4,5 @@
 
 /SeasonalAnime.sln
 .vs/*
+*.config
+App.config
