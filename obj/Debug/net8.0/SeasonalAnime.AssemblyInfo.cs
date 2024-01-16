@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SeasonalAnime")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0c0109c77cf6c27a4ae4b541d73aa137e10aa16d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b7aba664fd33f03274023e8871f0315ffca26693")]
 [assembly: System.Reflection.AssemblyProductAttribute("SeasonalAnime")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SeasonalAnime")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

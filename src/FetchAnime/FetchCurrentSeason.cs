@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using RestSharp;
 using System.ComponentModel.DataAnnotations;
+using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 
@@ -51,11 +52,14 @@ public class FetchCurrentSeason : IDisposable
     private JObject _anime_name_result;
     private Anime _anime_prop;
 
+    public StringBuilder result_builder = new StringBuilder();      // Used for bot printing. Aggregates everything from dictionary.
+
 
     // Hashmap to store title - popularity. Popularity as key, title as value.
     // List of string will be used to store the json meta data from the api.
     private Dictionary<int, string> _anime_dict = new Dictionary<int, string>();
     private Dictionary<string, string> _genre_dict = new Dictionary<string, string>();      // Key = anime title, value = genre.
+
 
     public FetchCurrentSeason(string url)
     {
@@ -63,6 +67,10 @@ public class FetchCurrentSeason : IDisposable
         _anime_prop = new Anime();
     }
 
+    /// <summary>
+    /// Main function that does the api request traverse.
+    /// </summary>
+    /// <returns></returns>
     public JObject GetAllSeasons()
     {
         var request = new RestRequest("/seasons/now");
@@ -82,6 +90,9 @@ public class FetchCurrentSeason : IDisposable
         //}
     }
 
+    /// <summary>
+    /// Takes title, popularity, and genres and store them onto main dictionary (_anime_dict)
+    /// </summary>
     public void FilterAnimes()
     {
         foreach (var item in _json_results["data"])
@@ -106,16 +117,17 @@ public class FetchCurrentSeason : IDisposable
             }
         }
 
-        // DisplayAnimeDictionary();
-        //FilterByUserGenre();
-        SortPopularityAnime();
+
+        // SortPopularityAnime();   // Normally this is uncommented. 
     }
 
-    // Sorts anime list from most popular to least (lowest number = most popular).
-    /*
+	/*
         Popularity = Amount of people that have it on their list (completed, watching, on hold, etc). 
      */
-    public void SortPopularityAnime()
+	/// <summary>
+	/// Sorts anime list from most popular to least (lowest number = most popular). 
+	/// </summary>
+	public void SortPopularityAnime()
     {
         var sorted_dict = from keys in _anime_dict orderby keys.Key ascending select keys;
 
@@ -136,8 +148,30 @@ public class FetchCurrentSeason : IDisposable
         Console.WriteLine($"Number of Animes Present In This Season: {_anime_dict.Count}");
         Console.WriteLine("+++++++++");
 
-        PrintOptions(dict_saved_option);
+        // PrintOptions(dict_saved_option);     // This is used for console application where it prints the menu.
     }
+
+    /// <summary>
+    /// Function used to be printed from the bot.
+    /// </summary>
+    /// <returns></returns>
+    public string DiscordBotPrintPopularity()
+    {
+        var sort_dict = from keys in _anime_dict orderby keys.Key ascending select keys;
+
+        string each_entry = "";
+
+        foreach (KeyValuePair<int, string> kvp in sort_dict)
+        {
+            //Console.WriteLine($"Popular # {kvp.Key} : {kvp.Value}");
+            each_entry = $"Popular # {kvp.Key} : {kvp.Value}";
+
+            result_builder.Append(each_entry).AppendLine();
+        }
+
+        return result_builder.ToString().Trim();
+    }
+
 
     // Testing purposes. Print things from json value filtering
     public void DisplayJsonValue<Thing>(Thing json_value)
