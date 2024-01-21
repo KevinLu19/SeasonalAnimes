@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Kevin\\Desktop\\Programming Project\\CSharp\\SeasonalAnime\\SeasonalAnime.csproj": {}
+    "C:\\Users\\Kevin\\Desktop\\Programming Project\\CSharp\\SeasonalAnimes\\SeasonalAnime.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Kevin\\Desktop\\Programming Project\\CSharp\\SeasonalAnime\\SeasonalAnime.csproj": {
+    "C:\\Users\\Kevin\\Desktop\\Programming Project\\CSharp\\SeasonalAnimes\\SeasonalAnime.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Kevin\\Desktop\\Programming Project\\CSharp\\SeasonalAnime\\SeasonalAnime.csproj",
+        "projectUniqueName": "C:\\Users\\Kevin\\Desktop\\Programming Project\\CSharp\\SeasonalAnimes\\SeasonalAnime.csproj",
         "projectName": "SeasonalAnime",
-        "projectPath": "C:\\Users\\Kevin\\Desktop\\Programming Project\\CSharp\\SeasonalAnime\\SeasonalAnime.csproj",
+        "projectPath": "C:\\Users\\Kevin\\Desktop\\Programming Project\\CSharp\\SeasonalAnimes\\SeasonalAnime.csproj",
         "packagesPath": "C:\\Users\\Kevin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Kevin\\Desktop\\Programming Project\\CSharp\\SeasonalAnime\\obj\\",
+        "outputPath": "C:\\Users\\Kevin\\Desktop\\Programming Project\\CSharp\\SeasonalAnimes\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -71,6 +71,10 @@
             "RestSharp": {
               "target": "Package",
               "version": "[110.2.0, )"
+            },
+            "System.Data.SQLite": {
+              "target": "Package",
+              "version": "[1.0.118, )"
             }
           },
           "imports": [
