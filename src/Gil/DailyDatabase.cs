@@ -7,69 +7,83 @@ using System.Threading.Tasks;
 using System.Data.SQLite;
 
 namespace SeasonalAnime.Gil;
-internal class DailyDatabase
+internal class DailyDatabase 
 {
-    private SQLiteConnection _sqlite_conn;
-
-    private const string _database = @"SeasonalAnime\src\Gil\Daily.sqlite";
-    private const string _table = "entered_datetime";
-	private string _conn_string = $"Data Source={_database};Version=3";
+    // Set connection string.
+    private string _connection_string = "Data Source=mydatabase.db;Version=3;";
 
 	public DailyDatabase()
     {
-        /*
-         Only Create new database when database don't exist. If it exist, dont create a new database.
-         */
-        
-        
-        // Create database if it doesn't exist.
-        if (!System.IO.File.Exists(_database))
+        // Check if database file exist.
+        if (!System.IO.File.Exists("mydatabase.db"))
         {
-            SQLiteConnection.CreateFile(_database);
-            Console.WriteLine($"{_database} has been created.");
-        }
+            SQLiteConnection.CreateFile("mydatabase.db");
 
-        // Create Table if it doesn't exist.
-        using (SQLiteConnection connection = new SQLiteConnection(_conn_string))
-        {
-            connection.Open();
-
-            using (SQLiteCommand command = new SQLiteCommand(connection))
-            {
-                command.CommandText = $"CREATE TABLE IF NOT EXISTS {_table}";
-                command.ExecuteNonQuery();
-                Console.WriteLine($"{_table} has been created.");
-            }
-        }
-    }
-
-    public void InsertData(DateTime entered_datetime)
-    {
-		using (SQLiteConnection connection = new SQLiteConnection(_conn_string))
-        {
-            connection.Open();
-
-            using (SQLiteCommand insert = new SQLiteCommand($"INSERT INTO {_table} VALUES ('{entered_datetime}')", connection))
-            {
-                insert.ExecuteNonQuery();
-                Console.WriteLine($"{entered_datetime} has been added to table.");
-            }
-        }
-	    	
-    }
-
-    public void QueryData(DateTime data)
-    {
-		using (SQLiteConnection connection = new SQLiteConnection(_conn_string))
-        {
-            connection.Open();
-
-			using (SQLiteCommand queryCmd = new SQLiteCommand($"SELECT {data} FROM {_table};", connection))
-			using (SQLiteDataReader reader = queryCmd.ExecuteReader())
+			using (SQLiteConnection connection = new SQLiteConnection(_connection_string))
 			{
-				while (reader.Read())
+				connection.Open();
+				Console.WriteLine("Database opened.");
+
+				// Specify the table creation SQL query.
+				string create_table = "CREATE TABLE IF NOT EXISTS MyTable (Id INTEGER PRIMARY KEY, Name TEXT)";
+
+				using (SQLiteCommand command = new SQLiteCommand(create_table, connection))
 				{
-					Console.WriteLine($"User ID: {reader["Id"]}, Name: {reader["Name"]}");
+					// Execute query to create the table.
+					command.ExecuteNonQuery();
+				}
+
+				Console.WriteLine("Table has been created.");
+
+			}
+		}
+		else
+		{
+			Console.WriteLine("Database already exists.");
+		}
+    }
+
+	private void InsertTable(DateTime snapshot_date)
+	{
+		int id = 1;
+
+		var convert_date = snapshot_date.ToString();
+
+		// open connection
+		using (SQLiteConnection connection = new SQLiteConnection(_connection_string))
+		{
+			connection.Open();
+
+			string insert = "INSERT INTO MyTable (Id, Name) VALUES (@Id, @Name)";
+
+			using (SQLiteCommand command = new SQLiteCommand(insert, connection))
+			{
+				command.Parameters.AddWithValue("@Id", id);
+				command.Parameters.AddWithValue("@Name", convert_date);
+
+				command.ExecuteNonQuery();
+
+				Console.WriteLine($"Added {convert_date} in ID {id}");
+			}
+		}
+	}
+
+	public void QueryTable(DateTime entered_date)
+	{
+		string sql_command = $"SELECT * FROM MyTable WHERE Name='{entered_date}';";
+
+		// Open database connection
+		using (SQLiteConnection connection = new SQLiteConnection(_connection_string))
+		{
+			connection.Open();
+
+			// Create command with query
+			using (SQLiteCommand command = new SQLiteCommand(sql_command, connection))
+			{
+				// Execute Query
+				using (SQLiteDataReader reader = command.ExecuteReader())
+				{
+					// stuff
 				}
 			}
 		}

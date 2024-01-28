@@ -219,3 +219,6 @@ C:\Users\Kevin\Desktop\Programming Project\CSharp\SeasonalAnimes\bin\Debug\net8.
 C:\Users\Kevin\Desktop\Programming Project\CSharp\SeasonalAnimes\obj\Debug\net8.0\SeasonalAnime.csproj.CopyComplete
 C:\Users\Kevin\Desktop\Programming Project\CSharp\SeasonalAnimes\obj\Debug\net8.0\SeasonalAnime.genruntimeconfig.cache
 C:\Users\Kevin\Desktop\Programming Project\CSharp\SeasonalAnimes\obj\Debug\net8.0\ref\SeasonalAnime.dll
+C:\Users\Kevin\Desktop\Programming Project\CSharp\SeasonalAnimes\bin\Debug\net8.0\AngleSharp.dll
+C:\Users\Kevin\Desktop\Programming Project\CSharp\SeasonalAnimes\bin\Debug\net8.0\InstagramApiSharp.dll
+C:\Users\Kevin\Desktop\Programming Project\CSharp\SeasonalAnimes\bin\Debug\net8.0\BouncyCastle.Crypto.dll

@@ -44,6 +44,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "AngleSharp": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            },
             "DisCatSharp": {
               "target": "Package",
               "version": "[10.6.1-nightly-003, )"
@@ -55,6 +59,10 @@
             "DisCatSharp.CommandsNext": {
               "target": "Package",
               "version": "[10.6.1-nightly-003, )"
+            },
+            "InstagramApiSharp": {
+              "target": "Package",
+              "version": "[1.7.4, )"
             },
             "JikanDotNet": {
               "target": "Package",

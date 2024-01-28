@@ -1,11 +1,4 @@
-﻿using NuGet.Frameworks;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SeasonalAnime.Gil;
+﻿namespace SeasonalAnime.Gil;
 
 /// <summary>
 /// Class handles the daily command. Supply 200 Gil when it's been 24 hours or more past the last call. 
@@ -16,9 +9,11 @@ internal class Daily
 {
     private readonly int _gil_amount;
     private DateTime current_date_time;
+
     public Daily()
     {
         _gil_amount = 200;
+
     }
 
 	/// <summary>

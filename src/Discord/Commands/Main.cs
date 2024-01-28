@@ -2,8 +2,9 @@
 using DisCatSharp.CommandsNext.Attributes;
 using DisCatSharp.Entities;
 
-using SeasonalAnime;
+
 using SeasonalAnime.Gil;
+using SeasonalAnime.src.Instagram;
 
 namespace SeasonalAnime.src.Discord.Commands;
 internal class Main	: BaseCommandModule
@@ -61,7 +62,7 @@ internal class Main	: BaseCommandModule
 		string command_list = @"
 			- season => Grabs and displays the current list of anime seasons. List will be from most popular to least popular.
 			- catchrate => Gives you detailed percentage on the catch rate of an entered Pokemon and their level.		
-			- daily => Receives 200 Gil on a daily basis. usage of Gil will be implemented in the future.
+			- gil => Receives 200 Gil on a daily basis. usage of Gil will be implemented in the future.
 ";
 
 		var embed = new DiscordEmbedBuilder()
@@ -75,46 +76,65 @@ internal class Main	: BaseCommandModule
 		await ctx.Message.RespondAsync(embed: embed.Build());
 	}
 
-	[Command("daily"), Description("Obtains daily Gil.")]
-	public async Task DailyCommand(CommandContext ctx)
-	{
-		Daily daily = new();
-		DateTime date_time = DateTime.UtcNow;       // Storing the date and time when command has been called. Needs to be stored in a database.
+	//[Command("daily"), Description("Obtains daily Gil.")]
+	//public async Task DailyCommand(CommandContext ctx)
+	//{
+	//	Daily daily = new();
+	//	DateTime date_time = DateTime.UtcNow;       // Storing the date and time when command has been called. Needs to be stored in a database.
 
-		var check = daily.CheckTime(date_time);
+	//	var check = daily.CheckTime(date_time);
 
-		if (check == true)
-		{
-			daily.GiveGil();        // Receives 200 Gil.
+	//	if (check == true)
+	//	{
+	//		daily.GiveGil();        // Receives 200 Gil.
 
-			// Bot returns a embedded message.
-			string title = @"Claimed Daily!";
-			string description = "";
-			var embed = BuildEmbedMessage(title, description, DiscordColor.White);
+	//		// Bot returns a embedded message.
+	//		string title = @"Claimed Daily!";
+	//		string description = "";
+	//		var embed = BuildEmbedMessage(title, description, DiscordColor.White);
 
-			await ctx.Message.RespondAsync(embed: embed.Build());
-		}
-		else
-		{
-			string title = @"You have already claimed your daily!";
-			string description = "";
+	//		await ctx.Message.RespondAsync(embed: embed.Build());
+	//	}
+	//	else
+	//	{
+	//		string title = @"You have already claimed your daily!";
+	//		string description = "";
 
-			var embed = BuildEmbedMessage(title, description, DiscordColor.Red);
+	//		var embed = BuildEmbedMessage(title, description, DiscordColor.Red);
 
-			await ctx.Message.RespondAsync(embed: embed.Build());
-		}
+	//		await ctx.Message.RespondAsync(embed: embed.Build());
+	//	}
 
-	}
+	//}
+
 	[Command("gil"), Description ("Gives 200 gil every 24 hour period.")]
-	public async Task Gil()
+	public async Task Gil(CommandContext ctx)
 	{
+		Daily daily = new Daily();
+		DateTime dt = DateTime.Today;
 
+		DailyDatabase daily_db = new DailyDatabase();
+
+		
+
+		await ctx.Message.RespondAsync($"Daily Claimed! {daily} have been added to your balance.");
+		await ctx.Message.RespondAsync($"{dt} was when daily was called.");
+		
 	}
 
 	[Command("catchrate"), Description("Gives detailed percentages on the catch rate of an entered Pokemon and their level.")]
 	public async Task PokemonCommand(CommandContext ctx, [RemainingText] string pokemon)
 	{
 
+	}
+
+
+	[Command("insta"), Description("Searches the latest post of given user.")]
+	public async Task InstaCommand(CommandContext ctx, [RemainingText] string username)
+	{
+		string example_user = "katerina.soria";
+
+		Insta insta = new Insta(example_user);
 	}
 
 	public DiscordEmbedBuilder BuildEmbedMessage(string title, string description, DiscordColor color)

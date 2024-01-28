@@ -9,9 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AngleSharp" Version="1.1.0" />
     <PackageReference Include="DisCatSharp" Version="10.6.1-nightly-003" />
     <PackageReference Include="DisCatSharp.ApplicationCommands" Version="10.6.1-nightly-003" />
     <PackageReference Include="DisCatSharp.CommandsNext" Version="10.6.1-nightly-003" />
+    <PackageReference Include="InstagramApiSharp" Version="1.7.4" />
     <PackageReference Include="JikanDotNet" Version="2.7.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />

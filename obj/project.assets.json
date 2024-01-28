@@ -2,6 +2,22 @@
   "version": 3,
   "targets": {
     "net8.0": {
+      "AngleSharp/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Text.Encoding.CodePages": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/AngleSharp.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/AngleSharp.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "DisCatSharp/10.6.1-nightly-003": {
         "type": "package",
         "dependencies": {
@@ -138,6 +154,20 @@
         "build": {
           "buildTransitive/netcoreapp3.0/EntityFramework.props": {},
           "buildTransitive/netcoreapp3.0/EntityFramework.targets": {}
+        }
+      },
+      "InstagramApiSharp/1.7.4": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.CSharp": "4.7.0",
+          "Newtonsoft.Json": "13.0.1",
+          "Portable.BouncyCastle": "1.8.6.7"
+        },
+        "compile": {
+          "lib/netstandard2.0/InstagramApiSharp.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/InstagramApiSharp.dll": {}
         }
       },
       "JikanDotNet/2.7.0": {
@@ -728,6 +758,19 @@
         },
         "runtime": {
           "lib/netstandard2.0/Octokit.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Portable.BouncyCastle/1.8.6.7": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/BouncyCastle.Crypto.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/BouncyCastle.Crypto.dll": {
             "related": ".xml"
           }
         }
@@ -2160,6 +2203,28 @@
           }
         }
       },
+      "System.Text.Encoding.CodePages/8.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/System.Text.Encoding.CodePages.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/System.Text.Encoding.CodePages.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net8.0/System.Text.Encoding.CodePages.dll": {
+            "assetType": "runtime",
+            "rid": "win"
+          }
+        }
+      },
       "System.Text.Encoding.Extensions/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -2305,6 +2370,31 @@
     }
   },
   "libraries": {
+    "AngleSharp/1.1.0": {
+      "sha512": "3baCuPkx2Wrpjr2b67wJAf9fCbYSbEVcdCh88S66HLdfHa2b1Mk1FsGpcH76uHLf3MPxopWngT1imHPEmDimAg==",
+      "type": "package",
+      "path": "anglesharp/1.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "anglesharp.1.1.0.nupkg.sha512",
+        "anglesharp.nuspec",
+        "lib/net461/AngleSharp.dll",
+        "lib/net461/AngleSharp.xml",
+        "lib/net472/AngleSharp.dll",
+        "lib/net472/AngleSharp.xml",
+        "lib/net6.0/AngleSharp.dll",
+        "lib/net6.0/AngleSharp.xml",
+        "lib/net7.0/AngleSharp.dll",
+        "lib/net7.0/AngleSharp.xml",
+        "lib/net8.0/AngleSharp.dll",
+        "lib/net8.0/AngleSharp.xml",
+        "lib/netstandard2.0/AngleSharp.dll",
+        "lib/netstandard2.0/AngleSharp.xml",
+        "logo.png"
+      ]
+    },
     "DisCatSharp/10.6.1-nightly-003": {
       "sha512": "PNx41uKk/3/CZQP5rEfT2bA9Qhvfjjmjf5ayr26NZqkzyrxdPRUGshUENIELaLjw8dQz7rde3NF8A3Ver6Kdbw==",
       "type": "package",
@@ -2457,6 +2547,23 @@
         "tools/netcoreapp3.0/any/ef6.dll",
         "tools/netcoreapp3.0/any/ef6.pdb",
         "tools/netcoreapp3.0/any/ef6.runtimeconfig.json"
+      ]
+    },
+    "InstagramApiSharp/1.7.4": {
+      "sha512": "a9R2pxWdKsWFwAOZg0oWArpT34F/UJp04h9mYG3F9tJVw7/qucztkqqyyyqjHWrrsVq1gGKrkAOYOJqZQ+YjZA==",
+      "type": "package",
+      "path": "instagramapisharp/1.7.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "insta.png",
+        "instagramapisharp.1.7.4.nupkg.sha512",
+        "instagramapisharp.nuspec",
+        "lib/net461/InstagramApiSharp.dll",
+        "lib/netstandard2.0/InstagramApiSharp.dll",
+        "lib/uap10.0.16299/InstagramApiSharp.dll",
+        "lib/uap10.0.16299/InstagramApiSharp.pri"
       ]
     },
     "JikanDotNet/2.7.0": {
@@ -3469,6 +3576,21 @@
         "octokit.9.1.0.nupkg.sha512",
         "octokit.nuspec",
         "octokit.png"
+      ]
+    },
+    "Portable.BouncyCastle/1.8.6.7": {
+      "sha512": "RBCAkzkBkur4w1YXFpwVdYvdm4ez7PUNyl5DsqPKDe0QSoH9xt6Mwzy1NSFSrrw4T7bCkxi06nSHCuBEuMEgfw==",
+      "type": "package",
+      "path": "portable.bouncycastle/1.8.6.7",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net40/BouncyCastle.Crypto.dll",
+        "lib/net40/BouncyCastle.Crypto.xml",
+        "lib/netstandard2.0/BouncyCastle.Crypto.dll",
+        "lib/netstandard2.0/BouncyCastle.Crypto.xml",
+        "portable.bouncycastle.1.8.6.7.nupkg.sha512",
+        "portable.bouncycastle.nuspec"
       ]
     },
     "RestSharp/110.2.0": {
@@ -6592,6 +6714,48 @@
         "system.text.encoding.nuspec"
       ]
     },
+    "System.Text.Encoding.CodePages/8.0.0": {
+      "sha512": "OZIsVplFGaVY90G2SbpgU7EnCoOO5pw1t4ic21dBF3/1omrJFpAGoNAVpPyMVOC90/hvgkGG3VFqR13YgZMQfg==",
+      "type": "package",
+      "path": "system.text.encoding.codepages/8.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "PACKAGE.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/System.Text.Encoding.CodePages.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
+        "buildTransitive/netcoreapp2.0/System.Text.Encoding.CodePages.targets",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net462/System.Text.Encoding.CodePages.dll",
+        "lib/net462/System.Text.Encoding.CodePages.xml",
+        "lib/net6.0/System.Text.Encoding.CodePages.dll",
+        "lib/net6.0/System.Text.Encoding.CodePages.xml",
+        "lib/net7.0/System.Text.Encoding.CodePages.dll",
+        "lib/net7.0/System.Text.Encoding.CodePages.xml",
+        "lib/net8.0/System.Text.Encoding.CodePages.dll",
+        "lib/net8.0/System.Text.Encoding.CodePages.xml",
+        "lib/netstandard2.0/System.Text.Encoding.CodePages.dll",
+        "lib/netstandard2.0/System.Text.Encoding.CodePages.xml",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "runtimes/win/lib/net6.0/System.Text.Encoding.CodePages.dll",
+        "runtimes/win/lib/net6.0/System.Text.Encoding.CodePages.xml",
+        "runtimes/win/lib/net7.0/System.Text.Encoding.CodePages.dll",
+        "runtimes/win/lib/net7.0/System.Text.Encoding.CodePages.xml",
+        "runtimes/win/lib/net8.0/System.Text.Encoding.CodePages.dll",
+        "runtimes/win/lib/net8.0/System.Text.Encoding.CodePages.xml",
+        "system.text.encoding.codepages.8.0.0.nupkg.sha512",
+        "system.text.encoding.codepages.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
     "System.Text.Encoding.Extensions/4.3.0": {
       "sha512": "YVMK0Bt/A43RmwizJoZ22ei2nmrhobgeiYwFzC4YAN+nue8RF6djXDMog0UCn+brerQoYVyaS+ghy9P/MUVcmw==",
       "type": "package",
@@ -7070,9 +7234,11 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "AngleSharp >= 1.1.0",
       "DisCatSharp >= 10.6.1-nightly-003",
       "DisCatSharp.ApplicationCommands >= 10.6.1-nightly-003",
       "DisCatSharp.CommandsNext >= 10.6.1-nightly-003",
+      "InstagramApiSharp >= 1.7.4",
       "JikanDotNet >= 2.7.0",
       "Microsoft.Extensions.Configuration.UserSecrets >= 6.0.1",
       "Newtonsoft.Json >= 13.0.3",
@@ -7124,6 +7290,10 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "AngleSharp": {
+            "target": "Package",
+            "version": "[1.1.0, )"
+          },
           "DisCatSharp": {
             "target": "Package",
             "version": "[10.6.1-nightly-003, )"
@@ -7135,6 +7305,10 @@
           "DisCatSharp.CommandsNext": {
             "target": "Package",
             "version": "[10.6.1-nightly-003, )"
+          },
+          "InstagramApiSharp": {
+            "target": "Package",
+            "version": "[1.7.4, )"
           },
           "JikanDotNet": {
             "target": "Package",

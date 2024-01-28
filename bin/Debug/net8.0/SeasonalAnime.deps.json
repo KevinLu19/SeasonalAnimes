@@ -8,9 +8,11 @@
     ".NETCoreApp,Version=v8.0": {
       "SeasonalAnime/1.0.0": {
         "dependencies": {
+          "AngleSharp": "1.1.0",
           "DisCatSharp": "10.6.1-nightly-003",
           "DisCatSharp.ApplicationCommands": "10.6.1-nightly-003",
           "DisCatSharp.CommandsNext": "10.6.1-nightly-003",
+          "InstagramApiSharp": "1.7.4",
           "JikanDotNet": "2.7.0",
           "Microsoft.Extensions.Configuration.UserSecrets": "6.0.1",
           "Newtonsoft.Json": "13.0.3",
@@ -19,6 +21,17 @@
         },
         "runtime": {
           "SeasonalAnime.dll": {}
+        }
+      },
+      "AngleSharp/1.1.0": {
+        "dependencies": {
+          "System.Text.Encoding.CodePages": "8.0.0"
+        },
+        "runtime": {
+          "lib/net8.0/AngleSharp.dll": {
+            "assemblyVersion": "1.1.0.0",
+            "fileVersion": "1.1.0.0"
+          }
         }
       },
       "DisCatSharp/10.6.1-nightly-003": {
@@ -120,6 +133,19 @@
           "lib/netstandard2.1/EntityFramework.dll": {
             "assemblyVersion": "6.0.0.0",
             "fileVersion": "6.400.420.21404"
+          }
+        }
+      },
+      "InstagramApiSharp/1.7.4": {
+        "dependencies": {
+          "Microsoft.CSharp": "4.7.0",
+          "Newtonsoft.Json": "13.0.3",
+          "Portable.BouncyCastle": "1.8.6.7"
+        },
+        "runtime": {
+          "lib/netstandard2.0/InstagramApiSharp.dll": {
+            "assemblyVersion": "1.7.4.0",
+            "fileVersion": "1.7.4.0"
           }
         }
       },
@@ -488,6 +514,14 @@
           "lib/netstandard2.0/Octokit.dll": {
             "assemblyVersion": "9.1.0.0",
             "fileVersion": "9.1.0.0"
+          }
+        }
+      },
+      "Portable.BouncyCastle/1.8.6.7": {
+        "runtime": {
+          "lib/netstandard2.0/BouncyCastle.Crypto.dll": {
+            "assemblyVersion": "1.8.6.0",
+            "fileVersion": "1.8.6.7"
           }
         }
       },
@@ -1265,6 +1299,7 @@
           "System.Runtime": "4.3.0"
         }
       },
+      "System.Text.Encoding.CodePages/8.0.0": {},
       "System.Text.Encoding.Extensions/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "3.1.0",
@@ -1333,6 +1368,13 @@
       "serviceable": false,
       "sha512": ""
     },
+    "AngleSharp/1.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3baCuPkx2Wrpjr2b67wJAf9fCbYSbEVcdCh88S66HLdfHa2b1Mk1FsGpcH76uHLf3MPxopWngT1imHPEmDimAg==",
+      "path": "anglesharp/1.1.0",
+      "hashPath": "anglesharp.1.1.0.nupkg.sha512"
+    },
     "DisCatSharp/10.6.1-nightly-003": {
       "type": "package",
       "serviceable": true,
@@ -1374,6 +1416,13 @@
       "sha512": "sha512-yj1+/4tci7Panu3jKDHYizxwVm0Jvm7b7m057b5h4u8NUHGCR8WIWirBTw+8EptRffwftIWPBeIRGNKD1ewEMQ==",
       "path": "entityframework/6.4.4",
       "hashPath": "entityframework.6.4.4.nupkg.sha512"
+    },
+    "InstagramApiSharp/1.7.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-a9R2pxWdKsWFwAOZg0oWArpT34F/UJp04h9mYG3F9tJVw7/qucztkqqyyyqjHWrrsVq1gGKrkAOYOJqZQ+YjZA==",
+      "path": "instagramapisharp/1.7.4",
+      "hashPath": "instagramapisharp.1.7.4.nupkg.sha512"
     },
     "JikanDotNet/2.7.0": {
       "type": "package",
@@ -1626,6 +1675,13 @@
       "sha512": "sha512-aIxATAhMWn3IquZsoho8yK12MDU81YhexLWLGDoCp1vhJP7Z23Pu5JBEkNaTIkl9KqALJPqGLN1an7YfA7BhvA==",
       "path": "octokit/9.1.0",
       "hashPath": "octokit.9.1.0.nupkg.sha512"
+    },
+    "Portable.BouncyCastle/1.8.6.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-RBCAkzkBkur4w1YXFpwVdYvdm4ez7PUNyl5DsqPKDe0QSoH9xt6Mwzy1NSFSrrw4T7bCkxi06nSHCuBEuMEgfw==",
+      "path": "portable.bouncycastle/1.8.6.7",
+      "hashPath": "portable.bouncycastle.1.8.6.7.nupkg.sha512"
     },
     "RestSharp/110.2.0": {
       "type": "package",
@@ -2193,6 +2249,13 @@
       "sha512": "sha512-BiIg+KWaSDOITze6jGQynxg64naAPtqGHBwDrLaCtixsa5bKiR8dpPOHA7ge3C0JJQizJE+sfkz1wV+BAKAYZw==",
       "path": "system.text.encoding/4.3.0",
       "hashPath": "system.text.encoding.4.3.0.nupkg.sha512"
+    },
+    "System.Text.Encoding.CodePages/8.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-OZIsVplFGaVY90G2SbpgU7EnCoOO5pw1t4ic21dBF3/1omrJFpAGoNAVpPyMVOC90/hvgkGG3VFqR13YgZMQfg==",
+      "path": "system.text.encoding.codepages/8.0.0",
+      "hashPath": "system.text.encoding.codepages.8.0.0.nupkg.sha512"
     },
     "System.Text.Encoding.Extensions/4.3.0": {
       "type": "package",
